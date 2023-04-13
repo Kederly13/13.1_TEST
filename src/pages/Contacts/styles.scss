@@ -1,0 +1,42 @@
+.contactsPage {
+    display: flex;
+    justify-content: space-between;
+    .info {
+        width: 50%;
+        .phone {
+            a {
+                text-decoration: none;
+                font-size: 60px;
+            }
+            margin-bottom: 50px;
+        }
+        .name {
+            padding-left: 23px;
+            border-left: 1px solid;
+            margin-bottom: 25px;
+            font-size: 25px;
+        }
+        .mail {
+            a {
+                text-decoration: nonea;
+                font-size: 20px;
+            }
+            margin-bottom: 52px;
+        }
+        .position {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+        .technologies {
+            font-size: 20px;
+        }
+    }
+    .image {
+        width: 50%;
+        img {
+            width: 100%;
+            min-width: 540px;
+            height: 340px;
+        }
+    }
+}

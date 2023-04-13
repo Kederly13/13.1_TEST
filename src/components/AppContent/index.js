@@ -13,14 +13,14 @@ import './styles.scss'
 
 const AppContent = () => {
     return (
-      <div className="main-wrapper">
+      <div className="mainWrapper">
           <Header />
           <main> 
             <Switch>
-              <Route exact path={routeMainPage()} component ={MainPage}/>
-              <Route exact path={routeNewsListPage()} component ={NewsListPage}/>
-              <Route exact path={routeNewsDetail()} component ={NewsDetail} />
-              <Route exact path={routeContacts()} component ={Contacts} />
+              <Route exact path={routeMainPage()} component={MainPage}/>
+              <Route exact path={routeNewsListPage()} component={NewsListPage}/>
+              <Route exact path={routeNewsDetail()} component={NewsDetail}/>
+              <Route exact path={routeContacts()} component={Contacts}/>
               <Redirect
                 to={{
                   pathname: routeMainPage()

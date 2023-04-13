@@ -1,23 +1,23 @@
 import './styles.scss'
 import { NavLink } from 'react-router-dom';
 
-import MainPage, {routeMain as routeMainPage} from 'pages/MainPage';
-import NewsListPage, {routeMain as routeNewsListPage} from 'pages/NewsListPage';
-import NewsDetail, {routeMain as routeNewsDetail} from 'pages/NewsDetail';
-import Contacts, {routeMain as routeContacts} from 'pages/Contacts';
+import {routeMain as routeMainPage} from 'pages/MainPage';
+import {routeMain as routeNewsListPage} from 'pages/NewsListPage';
+import {routeMain as routeNewsDetail} from 'pages/NewsDetail';
+import {routeMain as routeContacts} from 'pages/Contacts';
 
 const Header = () => {
     return (
       <header className="mainHeader">
-          <div className='title'> NEWS</div>
+          <div className='title'>NEWS</div>
           <nav>
-            <NavLink to={} className={'linkActive'}>
-              Главноя
-              </NavLink>
-            <NavLink to={} className={'linkActive'}>
+            <NavLink to={routeMainPage()} activeClassName={'linkActive'}>
+              Главная
+            </NavLink>
+            <NavLink to={routeNewsListPage()} activeClassName={'linkActive'}>
               Новости
             </NavLink>
-            <NavLink to={} className={'linkActive'}>
+            <NavLink to={routeContacts()} activeClassName={'linkActive'}>
               Контакты
             </NavLink>
           </nav>
