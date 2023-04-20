@@ -7,17 +7,19 @@ import {routeMain as routeNewsDetail} from 'pages/NewsDetail';
 import {routeMain as routeContacts} from 'pages/Contacts';
 
 const Header = () => {
+const getActiveLink = ({ isActive }) => isActive ? 'LinkActive' : '';
+
     return (
       <header className="mainHeader">
           <div className='title'>NEWS</div>
           <nav>
-            <NavLink to={routeMainPage()} activeClassName={'linkActive'}>
+            <NavLink to={routeMainPage()} className={getActiveLink}>
               Главная
             </NavLink>
-            <NavLink to={routeNewsListPage()} activeClassName={'linkActive'}>
+            <NavLink to={routeNewsListPage()} className={getActiveLink}>
               Новости
             </NavLink>
-            <NavLink to={routeContacts()} activeClassName={'linkActive'}>
+            <NavLink to={routeContacts()} className={getActiveLink}>
               Контакты
             </NavLink>
           </nav>

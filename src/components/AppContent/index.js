@@ -1,4 +1,4 @@
-import {Route, Switch, Redirect} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 
 import MainPage, {routeMain as routeMainPage} from 'pages/MainPage';
@@ -16,17 +16,12 @@ const AppContent = () => {
       <div className="mainWrapper">
           <Header />
           <main> 
-            <Switch>
-              <Route exact path={routeMainPage()} component={MainPage}/>
-              <Route exact path={routeNewsListPage()} component={NewsListPage}/>
-              <Route exact path={routeNewsDetail()} component={NewsDetail}/>
-              <Route exact path={routeContacts()} component={Contacts}/>
-              <Redirect
-                to={{
-                  pathname: routeMainPage()
-                }}
-               />
-            </Switch>
+            <Routes>
+              <Route exact path={routeMainPage()} element={<MainPage />}/>
+              <Route exact path={routeNewsListPage()} element={<NewsListPage />}/>
+              <Route exact path={routeNewsDetail()} element={<NewsDetail />}/>
+              <Route exact path={routeContacts()} element={<Contacts />}/>
+            </Routes>
           </main>
           <Footer />
       </div>
