@@ -1,10 +1,11 @@
 import './styles.scss';
 import NewsItem from './components/NewsItem';
 
-const NewsList = (props) => (
+
+const NewsList = ({ data })=> (
     <div className='newsList'>
-        {props.list.map((news) => (
-            <NewsItem key={news._id} item={news} />
+        {data.map(({ id, email, name }) => (
+            <NewsItem key={id} name={name} email={email} id={id} />
         ))}
     </div>
 )

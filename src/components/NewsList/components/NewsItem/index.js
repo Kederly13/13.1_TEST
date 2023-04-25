@@ -1,15 +1,20 @@
 import './styles.scss';
+import { NavLink } from 'react-router-dom';
+import {routeMain as routeNewsDetail} from 'pages/NewsDetail';
 
-const NewsItem = (props) => (
-    <div className='newsItem'>
+import DateView from 'components/DateView';
+
+const NewsItem = ({ name, email, id }) => (
+    <NavLink className='newsItem' to={routeNewsDetail(id)}>
         <div className='title'>
-            {props.item.title}
+            {name}
+            
         </div>
         <div className='bottomWrapper'>
-            <p className='source'>{props.item.clean_url}</p>
-            <p>{props.item.published_date}</p>
+            <p className='source'>{email}</p>
+            <DateView />
         </div>
-    </div>
+    </NavLink>
 )
 
 export default NewsItem;

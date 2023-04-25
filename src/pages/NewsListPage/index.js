@@ -6,31 +6,26 @@ import './styles.scss';
 import getNews from 'services/getNews';
 import routeMain from './routes';
 import PageTitle from 'components/PageTitle';
-import NewsListMocks from 'fixtures/newsListMocks';
 import NewsList from 'components/NewsList';
 
 const NewsListPage = () => {
 
     const [newsList, setNewsList] = useState([]);
-    const requestUrl = 'https://newscatcher.p.rapidapi.com/v1/search_enterprise';
+    const requestUrl = 'https://jsonplaceholder.typicode.com/comments';
+
 
     useEffect(() => {
-        getNews().then(response => {
-            setNewsList(response.data.articles)
-        })
-    }, [])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(requestUrl);
+                setNewsList(response.data);
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchData()
+    }, []);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get(requestUrl);
-    //             setNewsList(response);
-    //         } catch (error) {
-    //             console.error(error)
-    //         }
-    //     }
-    //     fetchData()
-    // }, []);
 
     return (
         <section className='NewsListPage'>
@@ -41,7 +36,7 @@ const NewsListPage = () => {
                     </h2>
                 }
              />
-             {NewsListMocks.length > 0 && <NewsList list={newsList}/>}
+             {newsList.length > 0 && <NewsList data={newsList}/>}
         </section>
     )
 }
