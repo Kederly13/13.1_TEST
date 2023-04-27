@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import './styles.scss';
-import routeMain from './routes';
-import fetchNews from 'services/fetchNews';
-import DateView from 'components/DateView';
-import SergeyImg from 'assets/img/sergey.png';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import routeMain from './routes';
 
+import DateView from 'components/DateView';
+import fetchNews from 'services/fetchNews';
+import SergeyImg from 'assets/img/sergey.png';
+
+import { ID } from 'types/ID';
+
+import './styles.scss';
 
 const NewsDetail = () => {
-    const { id } = useParams();
+    const {id} = useParams<ID>();
     const [news, setNews] = useState(null);
 
     useEffect(() => {

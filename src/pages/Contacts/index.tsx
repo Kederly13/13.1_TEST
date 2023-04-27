@@ -1,7 +1,7 @@
 import './styles.scss';
 import routeMain from './routes';
 
-import SergeyImg from 'assets/img/sergey.png';
+import SergeyImg from 'assets/img/sergey.jpg';
 
 const Contacts = () => (
     <div className='contactsPage'>

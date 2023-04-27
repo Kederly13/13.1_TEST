@@ -1,6 +1,6 @@
-import axios from 'axios';  
+import axios, {AxiosResponse, AxiosRequestConfig}from 'axios';  
 
-const fetchNews = async () => {
+const fetchNews = async (): Promise<AxiosResponse> => {
     const requestUrl = 'https://jsonplaceholder.typicode.com/comments';
     try {
         const response = await axios.get(requestUrl);
