@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import {routeMain as routeMainPage} from 'pages/MainPage';
 import {routeMain as routeNewsListPage} from 'pages/NewsListPage';
-import {routeMain as routeNewsDetail} from 'pages/NewsDetail';
+import {routeMain as routeNewsDetail} from 'pages/CommetsDetail';
 import {routeMain as routeContacts} from 'pages/Contacts';
 
 const Header = () => {

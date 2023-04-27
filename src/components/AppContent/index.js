@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import MainPage, {routeMain as routeMainPage} from 'pages/MainPage';
 import NewsListPage, {routeMain as routeNewsListPage} from 'pages/NewsListPage';
-import NewsDetail, {routeMain as routeNewsDetail} from 'pages/NewsDetail';
+import NewsDetail, {routeMain as routeNewsDetail} from 'pages/CommetsDetail';
 import Contacts, {routeMain as routeContacts} from 'pages/Contacts';
 
 import Header from 'components/Header';
@@ -17,10 +17,10 @@ const AppContent = () => {
           <Header />
           <main> 
             <Routes>
-              <Route exact path={routeMainPage()} element={<MainPage />}/>
-              <Route exact path={routeNewsListPage()} element={<NewsListPage />}/>
-              <Route exact path={routeNewsDetail()} element={<NewsDetail />}/>
-              <Route exact path={routeContacts()} element={<Contacts />}/>
+              <Route  path={routeMainPage()} element={<MainPage />}/>
+              <Route  path={routeNewsListPage()} element={<NewsListPage />}/>
+              <Route  path={routeNewsDetail()} element={<NewsDetail />}/>
+              <Route  path={routeContacts()} element={<Contacts />}/>
             </Routes>
           </main>
           <Footer />

@@ -1,14 +1,13 @@
 import './styles.scss';
 import { NavLink } from 'react-router-dom';
-import {routeMain as routeNewsDetail} from 'pages/NewsDetail';
+import {routeMain as routeNewsDetail} from 'pages/CommetsDetail';
 
 import DateView from 'components/DateView';
 
-const NewsItem = ({ name, email, id }) => (
-    <NavLink className='newsItem' to={routeNewsDetail(id)}>
+const CommentsItem = ({ name, email, id }) => (
+    <NavLink className='CommentsItem' to={routeNewsDetail(id)}>
         <div className='title'>
-            {name}
-            
+            {name}  
         </div>
         <div className='bottomWrapper'>
             <p className='source'>{email}</p>
@@ -17,4 +16,4 @@ const NewsItem = ({ name, email, id }) => (
     </NavLink>
 )
 
-export default NewsItem;
+export default CommentsItem;

@@ -3,28 +3,20 @@ import axios from "axios";
 
 import './styles.scss';
 
-import getNews from 'services/getNews';
+import fetchNews from 'services/fetchNews';
 import routeMain from './routes';
 import PageTitle from 'components/PageTitle';
 import NewsList from 'components/NewsList';
 
-const NewsListPage = () => {
+const CommentsListPage = () => {
 
-    const [newsList, setNewsList] = useState([]);
-    const requestUrl = 'https://jsonplaceholder.typicode.com/comments';
-
-
+    const [commentsList, setCommentsList] = useState([]);
+    
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(requestUrl);
-                setNewsList(response.data);
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        fetchData()
-    }, []);
+        fetchNews().then(response => {
+            setCommentsList(response)
+        })
+    }, [])
 
 
     return (
@@ -36,11 +28,11 @@ const NewsListPage = () => {
                     </h2>
                 }
              />
-             {newsList.length > 0 && <NewsList data={newsList}/>}
+             {commentsList.length > 0 && <NewsList data={commentsList}/>}
         </section>
     )
 }
 
 export {routeMain}
 
-export default NewsListPage;
+export default CommentsListPage;
