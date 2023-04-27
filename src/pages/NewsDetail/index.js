@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './styles.scss';
 import routeMain from './routes';
-import axios from "axios";
+import fetchNews from 'services/fetchNews';
 import DateView from 'components/DateView';
 import SergeyImg from 'assets/img/sergey.png';
 import { useParams } from 'react-router-dom';
@@ -11,19 +11,11 @@ const NewsDetail = () => {
     const { id } = useParams();
     const [news, setNews] = useState(null);
 
-    const requestUrl = 'https://jsonplaceholder.typicode.com/comments';
-
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(requestUrl);
-                setNews(response.data.find(item => item.id == id));
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        fetchData()
-    }, [id]);
+        fetchNews().then(response => {
+            setNews(response.find(item => item.id === parseInt(id)));
+        })
+    },[id]);
 
     return (
         <section className='newsDetailPage'>

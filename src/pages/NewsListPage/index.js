@@ -3,28 +3,20 @@ import axios from "axios";
 
 import './styles.scss';
 
-import getNews from 'services/getNews';
 import routeMain from './routes';
 import PageTitle from 'components/PageTitle';
 import NewsList from 'components/NewsList';
+import fetchNews from 'services/fetchNews';
 
 const NewsListPage = () => {
 
     const [newsList, setNewsList] = useState([]);
-    const requestUrl = 'https://jsonplaceholder.typicode.com/comments';
-
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(requestUrl);
-                setNewsList(response.data);
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        fetchData()
-    }, []);
+        fetchNews().then(response => {
+            setNewsList(response)
+        })
+    }, [])
 
 
     return (
