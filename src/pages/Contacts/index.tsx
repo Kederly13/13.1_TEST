@@ -19,7 +19,7 @@ const Contacts = () => (
                 Developer
             </div>
         </div>
-        <div className='image'><img alt={SergeyImg} src={SergeyImg}/></div>
+        <div className='image'><img alt='SergeyImg' src={SergeyImg}/></div>
     </div>
 )
 

@@ -1,20 +1,29 @@
 import {useState, useEffect} from 'react';
-import axios from "axios";
+import routeMain from './routes';
+
+import PageTitle from 'components/PageTitle';
+import NewsList from 'components/NewsList';
+
+import fetchNews from 'services/fetchNews';
+
+import { INewsDetail } from 'types/INewsDetail';
+import { NewsAPI } from 'api/NewsAPI';
 
 import './styles.scss';
 
-import routeMain from './routes';
-import PageTitle from 'components/PageTitle';
-import NewsList from 'components/NewsList';
-import fetchNews from 'services/fetchNews';
-
 const NewsListPage = () => {
 
-    const [newsList, setNewsList] = useState([]);
+    const [newsList, setNewsList] = useState<INewsDetail[]>([]);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchNews().then(response => {
-            setNewsList(response)
+        NewsAPI.getAll().then(response => {
+            if(Array.isArray(response)) {
+                setNewsList(response);
+            }
+            if(typeof response === 'string') {
+                setError(response)
+            }
         })
     }, [])
 

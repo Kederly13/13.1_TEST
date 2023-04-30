@@ -8,7 +8,7 @@ import {routeMain as routeContacts} from 'pages/Contacts';
 import './styles.scss'
 
 const Header = () => {
-const getActiveLink = ({ isActive }) => isActive ? 'LinkActive' : '';
+const getActiveLink = ({ isActive }: { isActive: boolean }) => isActive ? 'LinkActive' : '';
 
     return (
       <header className="mainHeader">

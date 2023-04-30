@@ -4,21 +4,33 @@ import routeMain from './routes';
 
 import DateView from 'components/DateView';
 import fetchNews from 'services/fetchNews';
-import SergeyImg from 'assets/img/sergey.png';
+import SergeyImg from 'assets/img/sergey.jpg';
 
 import { ID } from 'types/ID';
+import { INewsDetail } from 'types/INewsDetail';
+import { NewsAPI } from 'api/NewsAPI';
 
 import './styles.scss';
 
 const NewsDetail = () => {
-    const {id} = useParams<ID>();
-    const [news, setNews] = useState(null);
+    const { id } = useParams<ID>();
+    const [news, setNews] = useState<INewsDetail | null>(null);
 
     useEffect(() => {
         fetchNews().then(response => {
-            setNews(response.find(item => item.id === parseInt(id)));
+            if(Array.isArray(response)) {
+            setNews(response.find((item : INewsDetail)  => item.id === Number(id)));
+            }
         })
-    },[id]);
+    },[]);
+
+    // useEffect(() => {
+    //     if (id) {
+    //         NewsAPI.getSingle({id}).then(response => {
+    //             setNews(response);
+    //         })
+    //     }
+    // }, [])
 
     return (
         <section className='newsDetailPage'>
