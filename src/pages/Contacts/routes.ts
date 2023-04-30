@@ -1,3 +1,3 @@
 const routeMain = () => '/contacts';
 
-export default routeMain;
+export { routeMain };

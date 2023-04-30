@@ -22,4 +22,4 @@ const NewsItem: React.FC<INewsItemParams> = ({ item }) => (
     </NavLink>
 )
 
-export default NewsItem;
+export { NewsItem };

@@ -1,45 +1,45 @@
 import {useState, useEffect} from 'react';
-
-import routeMain from './routes';
+import { routeMain } from './routes';
 
 import PageTitle from 'components/PageTitle';
-
 import { NewsList } from 'components/NewsList';
 
-import { INewsDetail } from 'types/INewsDetail'
+import { INewsDetail } from 'types/INewsDetail';
 import { NewsAPI } from 'api/NewsAPI';
 
 import './styles.scss';
 
-const MainPage = () => {
+const NewsListPage = () => {
 
     const [newsList, setNewsList] = useState<INewsDetail[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        NewsAPI.getAll().then(response =>  {
+        NewsAPI.getAll().then(response => {
             if(Array.isArray(response)) {
                 setNewsList(response);
-            } if (typeof response === 'string') {
-                setError(error);
+            }
+            if(typeof response === 'string') {
+                setError(response)
             }
         })
     }, [])
 
+
     return (
-        <section className='mainPage'>
+        <section className='NewsListPage'>
             <PageTitle
                 title={
                     <h2>
-                        Always <br />fresh<span> NEWS</span>
+                        be <br />on<span> time</span>
                     </h2>
                 }
              />
-             {newsList.length > 0 && newsList.length >= 6 && <NewsList data={newsList.slice(0,6)}/>}
+             {newsList.length > 0 && <NewsList data={newsList}/>}
         </section>
     )
 }
 
 export {routeMain}
 
-export { MainPage };
+export  { NewsListPage };
