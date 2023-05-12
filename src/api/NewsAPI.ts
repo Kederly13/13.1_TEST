@@ -15,6 +15,7 @@ const NewsAPI = {
             return getErrorMessage(error);
         }  
     },
+    
     getSingle: async ({ id }: ID): Promise<AxiosResponse | string> => {
         try {
             const { data } = await axios.get(`${url}/comments/${id}`);

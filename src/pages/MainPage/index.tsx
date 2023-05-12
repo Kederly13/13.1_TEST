@@ -1,30 +1,27 @@
-import {useState, useEffect} from 'react';
-
+import {useEffect} from 'react';
 import routeMain from './routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
+
 
 import PageTitle from 'components/PageTitle';
-
 import { NewsList } from 'components/NewsList';
+import { loadPosts } from 'store/news/actions';
+import { selectList } from 'store/news/selectors';
 
-import { INewsDetail } from 'types/INewsDetail'
-import { NewsAPI } from 'api/NewsAPI';
+
 
 import './styles.scss';
 
 const MainPage = () => {
 
-    const [newsList, setNewsList] = useState<INewsDetail[]>([]);
-    const [error, setError] = useState<string | null>(null);
+    const dispatch = useDispatch();
+    const newsList = useSelector(selectList);
 
     useEffect(() => {
-        NewsAPI.getAll().then(response =>  {
-            if(Array.isArray(response)) {
-                setNewsList(response);
-            } if (typeof response === 'string') {
-                setError(error);
-            }
-        })
-    }, [])
+        dispatch(loadPosts());
+     
+    }, [dispatch])
 
     return (
         <section className='mainPage'>

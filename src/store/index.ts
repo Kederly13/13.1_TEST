@@ -10,12 +10,12 @@ import { newsReducer } from './news/reducer';
 
 
 const rootReducer = combineReducers({
-    newsReducer,
-})
+  news: newsReducer,
+});
 
 const store = configureStore({
-    reducer: {  },
-    enhancers: [composeWithDevTools(applyMiddleware(thunk))],
-})
+  reducer: rootReducer,
+  enhancers: [composeWithDevTools(applyMiddleware(thunk))],
+});
 
-export { store };
+export default store;
