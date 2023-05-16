@@ -1,9 +1,3 @@
-import './styles.scss'
+import { PageTitle } from "./PageTitles";
 
-interface IPageTitleParams {
-    title: JSX.Element;
-}
-
-const PageTitle: React.FC<IPageTitleParams> = ({title}) => <h3 className='pageTitle'>{title}</h3>
-
-export default PageTitle;
+export { PageTitle };

@@ -1,10 +1,7 @@
 import { NewsAPI } from 'api/NewsAPI';
-import { AnyAction, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { Istore } from "./types";
-
-
 
 import { getErrorMessage } from "utils/getErrorMessage";
 
@@ -13,19 +10,20 @@ export const setNewsAction = (list: Istore['list'] ) => {
         type: 'news/setNews',
         payload: list,
     }
-}
+};
+
+export const setErrorNewsAction = (error: Istore['error'] ) => {
+    return {
+        type: 'news/setErrorNews',
+        payload: error,
+    }
+};
 
 export const loadPosts = () => async (dispatch: Dispatch) => {
     try {
-        const response = await NewsAPI.getAll();
-
-        if (typeof response === 'string') {
-            return getErrorMessage(response);
-          } else {
-            dispatch(setNewsAction(response.data));
-          }
-
+        const { data } = await NewsAPI.getAll();
+        dispatch(setNewsAction(data));
     } catch (error) {
-        return getErrorMessage(error);
+        dispatch(setErrorNewsAction(getErrorMessage(error)))
     }
-}
+};

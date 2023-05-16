@@ -4,6 +4,6 @@ const CurrentDate = () => {
         day: currentDate.getDate(),
         month: currentDate.getMonth() + 1
     }
-}
+};
 
-export default CurrentDate;
+export { CurrentDate };

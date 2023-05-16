@@ -1,45 +1,33 @@
-import {useState, useEffect} from 'react';
+import { useEffect } from 'react';
 import { routeMain } from './routes';
+import { useAppDispatch, useAppSelector } from 'hooks/reduxHooks';
 
-import PageTitle from 'components/PageTitle';
+import { PageTitle } from 'components/PageTitle';
 import { NewsList } from 'components/NewsList';
-
-import { INewsDetail } from 'types/INewsDetail';
-import { NewsAPI } from 'api/NewsAPI';
+import { loadPosts } from 'store/news/actions';
+import { selectList } from 'store/news/selectors';
 
 import './styles.scss';
 
+
 const NewsListPage = () => {
 
-    const [newsList, setNewsList] = useState<INewsDetail[]>([]);
-    const [error, setError] = useState<string | null>(null);
+    const dispatch = useAppDispatch();
+    const newsList = useAppSelector(selectList);
 
     useEffect(() => {
-        NewsAPI.getAll().then(response => {
-            if(Array.isArray(response)) {
-                setNewsList(response);
-            }
-            if(typeof response === 'string') {
-                setError(response)
-            }
-        })
-    }, [])
-
+        dispatch(loadPosts());
+    }, [dispatch])
 
     return (
         <section className='NewsListPage'>
-            <PageTitle
-                title={
-                    <h2>
-                        be <br />on<span> time</span>
-                    </h2>
-                }
-             />
+            <PageTitle>
+                be <br />on<span> time</span>
+             </PageTitle>
              {newsList.length > 0 && <NewsList data={newsList}/>}
         </section>
     )
 }
 
-export {routeMain}
-
+export { routeMain }
 export  { NewsListPage };

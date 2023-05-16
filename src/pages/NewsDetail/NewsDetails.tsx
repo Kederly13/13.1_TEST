@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { routeMain } from './routes';
+import { useAppSelector } from 'hooks/reduxHooks';
+import { selectList } from 'store/news/selectors';
 
-import DateView from 'components/DateView';
-import fetchNews from 'services/fetchNews';
+import { DateView } from 'components/DateView';
 import SergeyImg from 'assets/img/sergey.jpg';
 
 import { ID } from 'types/ID';
@@ -12,24 +13,19 @@ import { INewsDetail } from 'types/INewsDetail';
 import './styles.scss';
 
 const NewsDetail = () => {
+
     const { id } = useParams<ID>();
-    const [news, setNews] = useState<INewsDetail | null>(null);
+    const [news, setNews] = useState<INewsDetail | undefined>(undefined);
+    const newsList = useAppSelector(selectList);
+
 
     useEffect(() => {
-        fetchNews().then(response => {
-            if(Array.isArray(response)) {
-            setNews(response.find((item : INewsDetail)  => item.id === Number(id)));
-            }
-        })
-    },[]);
+        const currentNews = newsList?.find(
+            (item: INewsDetail) => item.id === Number(id)
+        )
+        setNews(currentNews)
+    }, [id, newsList])
 
-    // useEffect(() => {
-    //     if (id) {
-    //         NewsAPI.getSingle({id}).then(response => {
-    //             setNews(response);
-    //         })
-    //     }
-    // }, [])
 
     return (
         <section className='newsDetailPage'>

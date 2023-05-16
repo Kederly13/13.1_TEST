@@ -1,7 +1,7 @@
-import './styles.scss';
 import { NewsItem } from './components/NewsItem';
-
 import { INewsDetail } from 'types/INewsDetail';
+
+import './styles.scss';
 
 interface INewsListParams {
     data: INewsDetail[];

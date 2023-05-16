@@ -1,21 +1,22 @@
 import thunk from 'redux-thunk';
-import { applyMiddleware } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { AnyAction, applyMiddleware } from 'redux';
+import { configureStore, ThunkDispatch } from '@reduxjs/toolkit';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { combineReducers } from 'redux';
-
 import { newsReducer } from './news/reducer';
 
 
-
-
 const rootReducer = combineReducers({
-  news: newsReducer,
+  newsReducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
   enhancers: [composeWithDevTools(applyMiddleware(thunk))],
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type AppThunkDispatch = ThunkDispatch<RootState, any, AnyAction>;
 
 export default store;
